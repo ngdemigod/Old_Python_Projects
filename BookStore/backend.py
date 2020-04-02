@@ -1,9 +1,18 @@
 import sqlite3
 
+""" SQLite3 Connection function methods 
+    .connect() - connect to a database
+    .cursor() - returns a cursor connected to the database
+    .execute() - performs the SQL expression
+    .commit() - commits current transaction
+    .close() - terminates connection
+    
+"""
 def connect():
     conn=sqlite3.connect('bookstore.db')
     cur=conn.cursor()
-    cur.execute("CREATE TABLE IF NOT EXISTS book (id INTEGER PRIMARY KEY, title TEXT, author TEXT, year INTEGER, isbn INTEGER)")
+    cur.execute("CREATE TABLE IF NOT EXISTS book (id INTEGER PRIMARY KEY, title TEXT, author TEXT, year INTEGER, isbn INTEGER)") #creates a table (i.e. book) within bookstore database if it doesn't exist
+    
     conn.commit()
     conn.close()
 
@@ -25,7 +34,7 @@ def view():
     return rows
 
 
-def search(title='',author='',year='',isbn=''):
+def search(title='',author='',year='',isbn=''): 
     conn=sqlite3.connect('bookstore.db')
     cur=conn.cursor()
     cur.execute("SELECT * FROM book WHERE title=? OR author=? OR year=? OR isbn=?", (title,author,year,isbn))
@@ -44,7 +53,7 @@ def delete(id):
 def update(id,title,author,year,isbn):
     conn=sqlite3.connect('bookstore.db')
     cur=conn.cursor()
-    cur.execute("UPDATE book SET title=?, author=?, year=?, isbn=? WHERE id=?", (id,title,author,year,isbn))
+    cur.execute("UPDATE book SET title=?, author=?, year=?, isbn=? WHERE id=?", (title,author,year,isbn,id))
     conn.commit()
     conn.close()
 
