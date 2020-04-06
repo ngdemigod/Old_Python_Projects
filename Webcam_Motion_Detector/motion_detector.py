@@ -4,12 +4,14 @@ first_frame = None #empty variable - during the 1st While loop run, it will stor
 
 video=cv2.VideoCapture(0) #triggers video capture object. In args, use either a number i.e. 0 for the camera or pass in a filepath string to a video file
 
+video.read()
+time.sleep(3)
+
+""" I added video.read() & time.sleep() above because some cameras are slow to initialize which can affect the captured frames   """
+
 while True:
     check, frame = video.read() #cv2.VideoCapture.read() - grabs, decodes & returns next video frame
     #check - is a boolean function to check if the video is working
-
-    print(check)
-    print(frame) #returns a numpy array breaking down each captured image from the video
 
     grey=cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY) #converts imshow() to greyscale
     grey=cv2.GaussianBlur(grey,(21,21),0) 
@@ -30,7 +32,7 @@ while True:
         Value assigned if the pixel value was above the threshold limit (i.e. 255 = white),
         Type of thresholding you want to perform (e.g. THRESH_BINARY i.e. simple thresholding)
 
-        The method returns a tuple (x,y) - which THRESH_BINARY the 1st number is not needed but the 2nd value is 
+        The method returns a tuple (x,y) - which THRESH_BINARY the 1st number is not needed but the 2nd value is ß
         the returned pixel value hence an index value of [1] """
 
     thresh_frame=cv2.dilate(thresh_frame,None,iterations=2) 
