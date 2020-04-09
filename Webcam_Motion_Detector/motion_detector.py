@@ -56,7 +56,7 @@ while True:
         and diagonal segments and leaves only their end points) """
 
     for contour in cnts: # this for loop is to filter the contour with areas less than 10000 pixels 
-        if cv2.contourArea(contour) < 10000: 
+        if cv2.contourArea(contour) < 1000: 
             continue
         """ coutourArea() - finds the area of a contour
             If the area of the contour is less than 1000 pixels, the script will restart the While loop
@@ -69,6 +69,8 @@ while True:
 
     status_list.append(status) #Appends the status of an image frame (i.e. 0 or 1) for each iteration of the while loop
     
+    status_list=status_list[-2:]
+
     if status_list[-1]==1 and status_list[-2]==0:
         times.append(datetime.now())
     """ This IF statement checks the status_list last two values (for each while loop iteration) to see if the status changed from 0 to 1.

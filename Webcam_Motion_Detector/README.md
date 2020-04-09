@@ -8,5 +8,7 @@ Process:
 - Find contours of the white pixels
 - Filter out contours with areas less than a 1000 pixels
 - On the color frame (i.e. unaltered color frames), apply a green rectangle around contours with areas over a 1000 pixels
-- Store & display timestamps of when motion is detected and when it is no longer detected
+- Store timestamps & display them in a graph
 
+motion_detector.py - handles the capturing of frames and storage in a csv file (i.e. Timestamp.csv)
+plotting.py - handles importing the timestamp data and plotting the data in a graph
