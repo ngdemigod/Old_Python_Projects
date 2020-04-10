@@ -5,8 +5,12 @@ from motion_detector import df
 from bokeh.plotting import figure,output_file,show
 from bokeh.models import HoverTool, ColumnDataSource
 
-df["Start_String"] = df["Start"].dt.strftime("%Y-%m-%d %H:%M:%S")
+"We need to convert the datetime type for the Start & End times to strings"
+
+df["Start_String"] = df["Start"].dt.strftime("%Y-%m-%d %H:%M:%S") 
 df["End_String"] = df["End"].dt.strftime("%Y-%m-%d %H:%M:%S")
+
+#dt.strftime("%Y-%m-%d %H:%M:%S") -  converts the times to strings with the format Year-Month-Day Hours:Minutes:Seconds
 
 cds = ColumnDataSource(df)
 
