@@ -27,17 +27,17 @@ df["Height"] = abs(df.Close - df.Open) #Returns absolute values for the differen
 
 p = figure(x_axis_type='datetime', width=1000, height=300)
 p.title.text = "Candlestick Chart"
+p.grid.grid_line_alpha = 0.3 #Handles the transparency of the grind lines
+
+p.segment(df.index,df.High,df.index,df.Low, color="Black")
+""" .segment() - Adds the line segments with the top & low point indicating Stock High & Low value """ 
 
 hours = 12*60*60*1000
 
 
-
 p.rect(df.index[df.Status == "Increase"], df.Middle[df.Status == "Increase"], hours,
     df.Height[df.Status == "Increase"],fill_color="Green",line_color = "Black")
-
-
-
-
+    
 p.rect(df.index[df.Status == "Decrease"], df.Middle[df.Status == "Decrease"], hours,
     df.Height[df.Status == "Decrease"],fill_color="Red",line_color = "Black")    
 
